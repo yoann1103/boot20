@@ -1,5 +1,6 @@
 package com.ken.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 public class FileUploadController {
 
@@ -19,6 +21,7 @@ public class FileUploadController {
     @PostMapping("/upload")
     public String upload(MultipartFile uploadFile, HttpServletRequest request) {
         String realPath = request.getSession().getServletContext().getRealPath("/uploadFile/");
+        log.info("真实路径是什么: {}", realPath);
         String format = sdf.format(new Date());
         File folder = new File(realPath);
         if (!folder.isDirectory()) {

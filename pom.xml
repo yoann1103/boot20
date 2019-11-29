@@ -19,7 +19,6 @@
         <module>chapter04-gson</module>
         <module>chapter04-fastjson</module>
         <module>chapter04-fastjson2</module>
-        <module>chapter04-static-resources</module>
         <module>chapter04-stand-servlet-multipart-resolver</module>
         <module>chapter04-controller-advice</module>
     </modules>
