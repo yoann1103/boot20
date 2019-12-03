@@ -7,9 +7,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
+/**
+ * @ControllerAdvice用于处理全局异常
+ */
 @ControllerAdvice
 public class CustomExceptionHandler {
 
+    /**
+     * 直接使用response返回流
+     */
     /*@ExceptionHandler(MaxUploadSizeExceededException.class)
     public void uploadException(MaxUploadSizeExceededException e, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");

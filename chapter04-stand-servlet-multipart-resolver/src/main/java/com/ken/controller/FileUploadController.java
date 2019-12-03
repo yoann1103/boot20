@@ -31,17 +31,18 @@ public class FileUploadController {
      */
     @PostMapping("/upload")
     public String upload(MultipartFile uploadFile, HttpServletRequest request) throws Exception {
-
-        //String realPath = request.getSession().getServletContext().getRealPath("/uploadFile/");
-        String realPath = uploadPath;
-        log.info("上传文件保存的路径: {}", realPath);
+        log.info("上传文件保存的路径: {}", uploadPath);
+        // 格式化日期,将当前日期格式化位xxxx/xx/xx的格式
         String format = sdf.format(new Date());
-        File folder = new File(realPath + "/" + format + "/");
+        // 上传文件的路径为{uploadPath}/{year}/{month}/{date}
+        File folder = new File(uploadPath + "/" + format + "/");
+        // 如果目录不存在创建目录
         if (!folder.isDirectory()) {
             folder.mkdirs();
         }
         String oldName = uploadFile.getOriginalFilename();
         String newName = UUID.randomUUID().toString().replaceAll("-", "") + oldName.substring(oldName.lastIndexOf("."));
+        // 返回一个图片URL,如http://domain|ip:port//uploadFile/2019/12/01/{uuid}.jpg
         try {
             uploadFile.transferTo(new File(folder, newName));
             String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/uploadFile/" + format + "/" + newName;
@@ -52,6 +53,13 @@ public class FileUploadController {
         return "上传失败!";
     }
 
+    /**
+     * 多文件上传
+     * @param uploadFiles
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/uploads")
     public String uploads(MultipartFile[] uploadFiles, HttpServletRequest request) throws Exception {
         if (uploadFiles != null && uploadFiles.length > 0) {
@@ -81,6 +89,16 @@ public class FileUploadController {
         return "上传失败!";
     }
 
+    /**
+     * 映射图片
+     * @param year
+     * @param month
+     * @param date
+     * @param guid
+     * @param suffix
+     * @param response
+     * @throws Exception
+     */
     @GetMapping("/uploadFile/{year}/{month}/{date}/{guid}.{suffix}")
     public void uploadFile(@PathVariable String year, @PathVariable String month, @PathVariable String date, @PathVariable String guid, @PathVariable String suffix, HttpServletResponse response) throws Exception {
         log.info("year: {}\tmonth: {}\tdate: {}\tguid: {}\tsuffix: {}", year, month, date, guid, suffix);
