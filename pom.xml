@@ -22,6 +22,8 @@
         <module>chapter04-static-resources</module>
         <module>chapter04-stand-servlet-multipart-resolver</module>
         <module>chapter04-controller-advice</module>
+        <module>chapter04-customize-error-page</module>
+        <module>chapter04-cors</module>
     </modules>
     <packaging>pom</packaging>
 
