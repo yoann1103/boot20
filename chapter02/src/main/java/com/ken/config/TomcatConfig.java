@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 因为Spring Boot不支持同事再配置中启动HTTP和HTTPS。
+ *
  * 这个时候可以配置请求重定向，将HTTP请求重定向为HTTPS请求
  */
 @Configuration
