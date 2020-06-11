@@ -1,5 +1,6 @@
 # 说明
 ## chapter02
+> 配置web容器，配置https，配置自定义属性
 ### https配置
 > jdk（1.8）的数字证书管理工具keytool，该工具在$JAVA_HOME/bin下，通过这个工具可以生成一个数字证书，生成命令如下：
 > ```bat
