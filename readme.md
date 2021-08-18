@@ -1,4 +1,5 @@
 # 说明
+此项目是实践《Spring Boot+Vue全栈开发实战》中的例子
 ## chapter02
 > 配置web容器，配置https，配置自定义属性
 ### https配置
